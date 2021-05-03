@@ -31,13 +31,6 @@ func (t *TelegramConsumer) Listen() error {
 		if update.Message == nil { // ignore any non-Message Updates
 			continue
 		}
-
-		log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
-
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
-		msg.ReplyToMessageID = update.Message.MessageID
-
-		t.botAPIClient.Send(msg)
 		answers := t.messenger.Scan(update.Message.Text)
 		if len(answers) > 0 {
 			for _, answer := range answers {

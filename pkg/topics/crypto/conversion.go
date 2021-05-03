@@ -27,7 +27,7 @@ func (c *Conversion) Answer(message string) []string {
 			if err != nil {
 				answers = append(answers, fmt.Sprintf("%+v", err.Error()))
 			} else {
-				answers = append(answers, fmt.Sprintf("test %s %s", price.Amount(), price.Currency()))
+				answers = append(answers, fmt.Sprintf("1%s is %s", price.Amount(), price.Currency()))
 			}
 		}
 		return answers

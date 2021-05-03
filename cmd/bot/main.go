@@ -31,7 +31,7 @@ func main() {
 
 	provider := crypto.NewCoinbasePriceProvider(coinbase.NewClient(cfg.Coinbase.ApiKey, cfg.Coinbase.SecretKey))
 	msg := messenger.NewMessenger()
-	msg.AddTopic(topicCrypto.NewCrypto(provider))
+	msg.AddTopic(topicCrypto.NewConversion(provider))
 	cs := consumer.NewTelegramConsumer(bot, msg)
 
 	if err := cs.Listen(); err != nil {
