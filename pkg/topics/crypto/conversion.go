@@ -39,3 +39,7 @@ func (c *Conversion) Answer(message string) []string {
 func (c *Conversion) Promote() string {
 	return `Example "LTC to USD"`
 }
+
+func (c *Conversion) Name() string {
+	return "Crypto conversion"
+}

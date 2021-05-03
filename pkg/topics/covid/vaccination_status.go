@@ -34,3 +34,7 @@ func (v *VaccinationStatus) Answer(message string) []string {
 func (v *VaccinationStatus) Promote() string {
 	return `Example "vaccination"`
 }
+
+func (v *VaccinationStatus) Name() string {
+	return "Vaccination status"
+}

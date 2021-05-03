@@ -12,6 +12,10 @@ func (m *Messenger) AddTopic(topic Topic) {
 	m.topics = append(m.topics, topic)
 }
 
+func (m *Messenger) Topics() []Topic {
+	return m.topics
+}
+
 func (m *Messenger) Scan(message string) []string {
 	answers := make([]string, 0)
 	for _, topic := range m.topics {

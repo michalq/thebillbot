@@ -38,7 +38,7 @@ func main() {
 	msg := messenger.NewMessenger()
 	msg.AddTopic(topicCrypto.NewConversion(provider))
 	msg.AddTopic(topicCovid.NewVaccinationStatus(szczepimysieClient))
-	msg.AddTopic(messenger.NewHelpTopic())
+	msg.AddTopic(messenger.NewHelpTopic(msg))
 
 	cs := consumer.NewTelegramConsumer(bot, msg)
 	if err := cs.Listen(); err != nil {
