@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"regexp"
+	"strings"
 
 	"github.com/michalq/thebillbot/internal/crypto"
 )
@@ -27,7 +28,7 @@ func (c *Conversion) Answer(message string) []string {
 			if err != nil {
 				answers = append(answers, fmt.Sprintf("%+v", err.Error()))
 			} else {
-				answers = append(answers, fmt.Sprintf("1%s is %s", price.Amount(), price.Currency()))
+				answers = append(answers, fmt.Sprintf("1[%s] costs %s[%s]", strings.ToUpper(submatch[1]), price.Amount(), price.Currency()))
 			}
 		}
 		return answers
