@@ -2,6 +2,8 @@
 
 Ministerstwo Zdrowia in Poland doesn't provide an official API for vaccination status. But it uses arcgis.com to present this data, and we can query this data easily using arcgis.
 
+https://services-eu1.arcgis.com/zk7YlClTgerl62BY/ArcGIS/rest/services
+
 https://services-eu1.arcgis.com/zk7YlClTgerl62BY/ArcGIS/rest/services/global_szczepienia_widok2/FeatureServer/0
 
 Making query

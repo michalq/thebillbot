@@ -34,3 +34,7 @@ func (c *Conversion) Answer(message string) []string {
 	}
 	return answers
 }
+
+func (c *Conversion) Promote() string {
+	return `Example "LTC to USD"`
+}
