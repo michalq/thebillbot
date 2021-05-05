@@ -34,7 +34,7 @@ func (t *TelegramConsumer) Listen() error {
 		answers := t.messenger.Scan(update.Message.Text)
 		if len(answers) > 0 {
 			for _, answer := range answers {
-				t.botAPIClient.Send(tgbotapi.NewMessage(update.Message.Chat.ID, answer))
+				t.botAPIClient.Send(tgbotapi.NewMessage(update.Message.Chat.ID, answer.Content))
 			}
 		} else {
 			t.botAPIClient.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "I don't understand"))

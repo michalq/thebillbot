@@ -16,8 +16,8 @@ func (m *Messenger) Topics() []Topic {
 	return m.topics
 }
 
-func (m *Messenger) Scan(message string) []string {
-	answers := make([]string, 0)
+func (m *Messenger) Scan(message string) []Message {
+	answers := make([]Message, 0)
 	for _, topic := range m.topics {
 		if topicAnswers := topic.Answer(message); len(topicAnswers) > 0 {
 			answers = append(answers, topicAnswers...)

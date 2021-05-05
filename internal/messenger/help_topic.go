@@ -12,15 +12,15 @@ func NewHelpTopic(msgs *Messenger) *HelpTopic {
 	return &HelpTopic{msgs}
 }
 
-func (h *HelpTopic) Answer(message string) []string {
+func (h *HelpTopic) Answer(message string) []Message {
 
 	pattern := regexp.MustCompile(`help`)
 	if !pattern.MatchString(message) {
-		return []string{}
+		return []Message{}
 	}
-	answers := make([]string, 0, len(h.msgs.Topics()))
+	answers := make([]Message, 0, len(h.msgs.Topics()))
 	for _, topic := range h.msgs.Topics() {
-		answers = append(answers, topic.Promote())
+		answers = append(answers, Message{Content: topic.Promote()})
 	}
 	return answers
 }

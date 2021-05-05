@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/michalq/thebillbot/internal/crypto"
+	"github.com/michalq/thebillbot/internal/messenger"
 )
 
 type Conversion struct {
@@ -17,18 +18,18 @@ func NewConversion(priceProvider crypto.PriceProvider) *Conversion {
 	return &Conversion{priceProvider}
 }
 
-func (c *Conversion) Answer(message string) []string {
+func (c *Conversion) Answer(message string) []messenger.Message {
 
 	pattern := regexp.MustCompile(`([a-zA-Z]{3}) to ([a-zA-Z]{3})`)
 	allIndexes := pattern.FindAllStringSubmatch(message, -1)
-	answers := make([]string, 0)
+	answers := make([]messenger.Message, 0)
 	if len(allIndexes) > 0 {
 		for _, submatch := range allIndexes {
 			price, err := c.priceProvider.CurrentPrice(context.TODO(), submatch[1], submatch[2])
 			if err != nil {
-				answers = append(answers, fmt.Sprintf("%+v", err.Error()))
+				answers = append(answers, messenger.Message{Content: fmt.Sprintf("%+v", err.Error())})
 			} else {
-				answers = append(answers, fmt.Sprintf("1[%s] costs %s[%s]", strings.ToUpper(submatch[1]), price.Amount(), price.Currency()))
+				answers = append(answers, messenger.Message{Content: fmt.Sprintf("💰 1[%s] costs %s[%s]", strings.ToUpper(submatch[1]), price.Amount(), price.Currency())})
 			}
 		}
 		return answers

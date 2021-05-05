@@ -6,7 +6,7 @@ type Message struct {
 }
 
 type Topic interface {
-	Answer(message string) []string // TODO change to Message
+	Answer(message string) []Message
 	Promote() string
 	Name() string
 }
