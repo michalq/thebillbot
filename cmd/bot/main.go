@@ -33,7 +33,7 @@ func main() {
 	bot.Debug = true
 
 	provider := crypto.NewCoinbasePriceProvider(coinbase.NewClient(cfg.Coinbase.ApiKey, cfg.Coinbase.SecretKey))
-	szczepimysieClient := szczepimysie.NewClient(arcgis.NewClient("zk7YlClTgerl62BY"), "global_szczepienia_widok2")
+	szczepimysieClient := szczepimysie.NewClient(arcgis.NewClient(cfg.Szczepimysie.ClientId), cfg.Szczepimysie.ServiceName)
 
 	msg := messenger.NewMessenger()
 	msg.AddTopic(topicCrypto.NewConversion(provider))

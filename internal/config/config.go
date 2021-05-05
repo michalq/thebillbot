@@ -8,8 +8,8 @@ type AppConfig struct {
 		ApiKey    string `env:"COINBASE_API_KEY"`
 		SecretKey string `env:"COINBASE_API_SECRET_KEY"`
 	}
-	Binance struct {
-		ApiKey    string `env:"BINANCE_API_KEY"`
-		SecretKey string `env:"BINANCE_API_SECRET_KEY"`
+	Szczepimysie struct {
+		ClientId    string `env:"SZCZEPIMYSIE_CLIENT_ID"`
+		ServiceName string `env:"SZCZEPIMYSIE_SERVICE_NAME"`
 	}
 }
