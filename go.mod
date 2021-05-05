@@ -1,6 +1,6 @@
 module github.com/michalq/thebillbot
 
-go 1.12
+go 1.14
 
 require (
 	github.com/Netflix/go-env v0.0.0-20210215222557-e437a7e7f9fb
