@@ -1,6 +1,7 @@
 package messenger
 
 import (
+	"context"
 	"regexp"
 	"strings"
 )
@@ -13,7 +14,7 @@ func NewHelpTopic(msgs *Messenger) *HelpTopic {
 	return &HelpTopic{msgs}
 }
 
-func (h *HelpTopic) Answer(message string) []Message {
+func (h *HelpTopic) Answer(_ context.Context, message string) []Message {
 
 	pattern := regexp.MustCompile(`help`)
 	if !pattern.MatchString(strings.ToLower(message)) {

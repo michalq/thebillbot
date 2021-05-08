@@ -1,6 +1,7 @@
 package consumer
 
 import (
+	"context"
 	"log"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
@@ -16,7 +17,7 @@ func NewTelegramConsumer(botAPIClient *tgbotapi.BotAPI, msg *messenger.Messenger
 	return &TelegramConsumer{botAPIClient, msg}
 }
 
-func (t *TelegramConsumer) Listen() error {
+func (t *TelegramConsumer) Listen(ctx context.Context) error {
 
 	log.Printf("Authorized on account %s", t.botAPIClient.Self.UserName)
 
@@ -31,7 +32,7 @@ func (t *TelegramConsumer) Listen() error {
 		if update.Message == nil { // ignore any non-Message Updates
 			continue
 		}
-		answers := t.messenger.Scan(update.Message.Text)
+		answers := t.messenger.Scan(ctx, update.Message.Text)
 		if len(answers) > 0 {
 			for _, answer := range answers {
 				t.botAPIClient.Send(tgbotapi.NewMessage(update.Message.Chat.ID, answer.Content))

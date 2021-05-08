@@ -18,14 +18,14 @@ func NewConversion(priceProvider crypto.PriceProvider) *Conversion {
 	return &Conversion{priceProvider}
 }
 
-func (c *Conversion) Answer(message string) []messenger.Message {
+func (c *Conversion) Answer(ctx context.Context, message string) []messenger.Message {
 
 	pattern := regexp.MustCompile(`([a-zA-Z]{3}) to ([a-zA-Z]{3})`)
 	allIndexes := pattern.FindAllStringSubmatch(strings.ToLower(message), -1)
 	answers := make([]messenger.Message, 0)
 	if len(allIndexes) > 0 {
 		for _, submatch := range allIndexes {
-			price, err := c.priceProvider.CurrentPrice(context.TODO(), submatch[1], submatch[2])
+			price, err := c.priceProvider.CurrentPrice(ctx, submatch[1], submatch[2])
 			if err != nil {
 				answers = append(answers, messenger.Message{Content: fmt.Sprintf("%+v", err.Error())})
 			} else {

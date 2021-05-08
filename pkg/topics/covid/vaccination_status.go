@@ -20,13 +20,13 @@ func NewVaccinationStatus(szczepimysieClient *szczepimysie.Client) *VaccinationS
 	return &VaccinationStatus{szczepimysieClient}
 }
 
-func (v *VaccinationStatus) Answer(message string) []messenger.Message {
+func (v *VaccinationStatus) Answer(ctx context.Context, message string) []messenger.Message {
 
 	pattern := regexp.MustCompile(`vaccination`)
 	if !pattern.MatchString(strings.ToLower(message)) {
 		return []messenger.Message{}
 	}
-	status, err := v.szczepimysieClient.LatestStatus(context.TODO())
+	status, err := v.szczepimysieClient.LatestStatus(ctx)
 	if err != nil {
 		return []messenger.Message{{Topic: "Error", Content: err.Error()}}
 	}

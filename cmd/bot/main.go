@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 
@@ -41,7 +42,8 @@ func main() {
 	msg.AddTopic(messenger.NewHelpTopic(msg))
 
 	cs := consumer.NewTelegramConsumer(bot, msg)
-	if err := cs.Listen(); err != nil {
+	ctx := context.TODO()
+	if err := cs.Listen(ctx); err != nil {
 		log.Panic(fmt.Sprintf("telegram listener: %+v", err))
 	}
 }
