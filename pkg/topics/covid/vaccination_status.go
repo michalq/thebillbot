@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"regexp"
+	"strings"
 
 	"github.com/michalq/thebillbot/internal/messenger"
 	"github.com/michalq/thebillbot/pkg/szczepimysie"
@@ -22,7 +23,7 @@ func NewVaccinationStatus(szczepimysieClient *szczepimysie.Client) *VaccinationS
 func (v *VaccinationStatus) Answer(message string) []messenger.Message {
 
 	pattern := regexp.MustCompile(`vaccination`)
-	if !pattern.MatchString(message) {
+	if !pattern.MatchString(strings.ToLower(message)) {
 		return []messenger.Message{}
 	}
 	status, err := v.szczepimysieClient.LatestStatus(context.TODO())

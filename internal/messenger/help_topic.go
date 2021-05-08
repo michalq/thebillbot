@@ -2,6 +2,7 @@ package messenger
 
 import (
 	"regexp"
+	"strings"
 )
 
 type HelpTopic struct {
@@ -15,7 +16,7 @@ func NewHelpTopic(msgs *Messenger) *HelpTopic {
 func (h *HelpTopic) Answer(message string) []Message {
 
 	pattern := regexp.MustCompile(`help`)
-	if !pattern.MatchString(message) {
+	if !pattern.MatchString(strings.ToLower(message)) {
 		return []Message{}
 	}
 	answers := make([]Message, 0, len(h.msgs.Topics()))

@@ -21,7 +21,7 @@ func NewConversion(priceProvider crypto.PriceProvider) *Conversion {
 func (c *Conversion) Answer(message string) []messenger.Message {
 
 	pattern := regexp.MustCompile(`([a-zA-Z]{3}) to ([a-zA-Z]{3})`)
-	allIndexes := pattern.FindAllStringSubmatch(message, -1)
+	allIndexes := pattern.FindAllStringSubmatch(strings.ToLower(message), -1)
 	answers := make([]messenger.Message, 0)
 	if len(allIndexes) > 0 {
 		for _, submatch := range allIndexes {
