@@ -17,6 +17,7 @@ import (
 
 	topicCovid "github.com/michalq/thebillbot/pkg/topics/covid"
 	topicCrypto "github.com/michalq/thebillbot/pkg/topics/crypto"
+	topicScheduler "github.com/michalq/thebillbot/pkg/topics/scheduler"
 )
 
 func main() {
@@ -38,6 +39,7 @@ func main() {
 
 	msg := messenger.NewMessenger()
 	msg.AddTopic(topicCrypto.NewConversion(provider))
+	msg.AddTopic(topicScheduler.NewScheduler())
 	msg.AddTopic(topicCovid.NewVaccinationStatus(szczepimysieClient))
 	msg.AddTopic(messenger.NewHelpTopic(msg))
 

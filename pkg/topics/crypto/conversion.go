@@ -19,7 +19,6 @@ func NewConversion(priceProvider crypto.PriceProvider) *Conversion {
 }
 
 func (c *Conversion) Answer(ctx context.Context, message string) []messenger.Message {
-
 	pattern := regexp.MustCompile(`([a-zA-Z]{3}) to ([a-zA-Z]{3})`)
 	allIndexes := pattern.FindAllStringSubmatch(strings.ToLower(message), -1)
 	answers := make([]messenger.Message, 0)

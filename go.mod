@@ -7,5 +7,6 @@ require (
 	github.com/fabioberger/coinbase-go v0.0.0-20160522011833-8328539b18ab // indirect
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/gorilla/schema v1.2.0
+	github.com/jasonlvhit/gocron v0.0.1 // indirect
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 )
